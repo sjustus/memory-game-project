@@ -29,7 +29,7 @@ body {
 
 /* Styles for Deck*/
 
-.deck {
+#deck {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -43,7 +43,7 @@ body {
   margin: 0 0 5em;
 }
 
-.deck .card {
+.card {
   width: 125px;
   height: 125px;
   display: flex;
@@ -51,4 +51,18 @@ body {
   align-items: center;
   border: 1px solid #000;
   border-radius: 8px;
+  font-size: 0px;
+}
+
+
+.open {
+  transform: rotateY(0);
+}
+
+.show {
+    font-size: 33px;
+}
+
+.match {
+    font-size: 33px;
 }

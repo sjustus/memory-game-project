@@ -1,7 +1,7 @@
-const card = document.getElementsByClassName('card');
 /*
  * Create a list that holds all of your cards
  */
+const cards = [...document.querySelectorAll('.card')];
 
 
 /*
@@ -40,8 +40,14 @@ function shuffle(array) {
  */
 
 //Add event listener to cards
-for (let i = 0; i < card.length; i++){
-  card[i].addEventListener('click', function () {
-    console.log('The card was clicked!');
+for (let i = 0; i < cards.length; i++){
+  cards[i].addEventListener('click', function() {
+    displayCard();
+    //console.log('Clicked');
   });
+};
+
+//Function to display card symbol
+function displayCard() {
+  this.classList.add('show');
 }
