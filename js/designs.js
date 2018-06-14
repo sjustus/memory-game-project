@@ -41,13 +41,13 @@ function shuffle(array) {
 
 //Add event listener to cards
 for (let i = 0; i < cards.length; i++){
-  cards[i].addEventListener('click', function() {
-    displayCard();
+  cards[i].addEventListener('click', function(event) {
+    displayCard(event);
     //console.log('Clicked');
   });
 };
 
 //Function to display card symbol
-function displayCard() {
-  this.classList.add('show');
+function displayCard(event) {
+  event.target.classList.add('show');
 }
