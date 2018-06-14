@@ -3,6 +3,8 @@
  */
 const cards = [...document.querySelectorAll('.card')];
 
+//Select deck
+const deck = document.getElementById('deck');
 
 /*
  * Display the cards on the page
@@ -10,7 +12,17 @@ const cards = [...document.querySelectorAll('.card')];
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+function gameOn() {
+  //Call shuffle() function on cards array to shuffle cards
+  const isShuffled = shuffle(cards);
+  //Add each item in new array to deck
+  isShuffled.forEach(function(card) {
+    deck.appendChild(card);
+  });
+}
 
+// Call gameOn function on load
+window.addEventListener('load', gameOn());
 //TODO: note where I got shuffle function
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
