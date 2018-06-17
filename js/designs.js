@@ -1,44 +1,14 @@
-/*
- * Create a list that holds all of your cards
- */
+// Create a list that holds all of your cards
 const cards = [...document.querySelectorAll('.card')];
 
-//Select deck
+// Select deck
 const deck = document.getElementById('deck');
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-function gameOn() {
-  //Call shuffle() function on cards array to shuffle cards
-  const isShuffled = shuffle(cards);
-  //Add each item in new array to deck
-  isShuffled.forEach(function(card) {
-    deck.appendChild(card);
-  });
-}
+// Create list of open cards
+let openCards = [''];
 
 // Call gameOn function on load
 window.addEventListener('load', gameOn());
-//TODO: note where I got shuffle function
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -55,11 +25,43 @@ function shuffle(array) {
 for (let i = 0; i < cards.length; i++){
   cards[i].addEventListener('click', function(event) {
     displayCard(event);
-    //console.log('Clicked');
+    addToOpen(event);
   });
 };
 
-//Function to display card symbol
+
+//TODO: note where I got shuffle function
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
+// Function to shuffle cards and display on screen
+function gameOn() {
+  //Call shuffle() function on cards array to shuffle cards
+  const isShuffled = shuffle(cards);
+  //Add each item in new array to deck
+  isShuffled.forEach(function(card) {
+    deck.appendChild(card);
+  });
+}
+
+// Function to display card symbol
 function displayCard(event) {
   event.target.classList.add('show');
+}
+
+//Function to add clicked card to openCards array
+function addToOpen() {
+  openCards.push(event);
 }
