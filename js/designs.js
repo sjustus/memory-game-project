@@ -21,10 +21,8 @@ window.addEventListener('load', gameOn());
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-// Add event listener to cards
-// For each card in deck
+// Add event listener to each card in deck
 for (let i = 0; i < cards.length; i++){
-  // Add click event to each card
   cards[i].addEventListener('click', function(event) {
     displayCard(event); // Display card on click
     openCards(); // Add clicked card to list of open cards
@@ -69,8 +67,12 @@ function openCards() {
   cardsOpen.push(event);
   if (cardsOpen.length === 2) {
     disabled();
+  } else if (event.target[0].type === event.target[1].type) {
+    console.log('match');
+  } else if (event.target[0].type !== event.target[1].type) {
+    console.log('mismatch');
   }
-  
+
 }
 
 // Function to disable mouse events
