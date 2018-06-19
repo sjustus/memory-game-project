@@ -67,9 +67,9 @@ function openCards() {
   cardsOpen.push(event);
   if (cardsOpen.length === 2) {
     disabled();
-  } else if (event.target[0].type === event.target[1].type) {
+  } else if (cardsOpen.length === 2 && cardsOpen[0].type === cardsOpen[1].type) {
     console.log('match');
-  } else if (event.target[0].type !== event.target[1].type) {
+  } else if (cardsOpen.length === 2 && cardsOpen[0].type !== cardsOpen[1].type) {
     console.log('mismatch');
   }
 
