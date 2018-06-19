@@ -66,8 +66,14 @@ function displayCard(event) {
 
 //Function to add clicked card to openCards array
 function openCards() {
-  cardsOpen.push(this);
-  if (cardsOpen.length = 2) {
-    console.log('2 cards open');
+  cardsOpen.push(event);
+  if (cardsOpen.length === 2) {
+    disabled();
   }
+  
+}
+
+// Function to disable mouse events
+function disabled() {
+  deck.classList.add('disabled');
 }
