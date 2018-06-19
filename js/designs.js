@@ -5,7 +5,7 @@ const cards = [...document.querySelectorAll('.card')];
 const deck = document.getElementById('deck');
 
 // Create list of open cards
-let openCards = [''];
+let cardsOpen = [];
 
 // Call gameOn function on load
 window.addEventListener('load', gameOn());
@@ -21,11 +21,14 @@ window.addEventListener('load', gameOn());
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-//Add event listener to cards
+// Add event listener to cards
+// For each card in deck
 for (let i = 0; i < cards.length; i++){
+  // Add click event to each card
   cards[i].addEventListener('click', function(event) {
-    displayCard(event);
-    addToOpen(event);
+    displayCard(event); // Display card on click
+    openCards(); // Add clicked card to list of open cards
+
   });
 };
 
@@ -62,6 +65,9 @@ function displayCard(event) {
 }
 
 //Function to add clicked card to openCards array
-function addToOpen() {
-  openCards.push(event);
+function openCards() {
+  cardsOpen.push(this);
+  if (cardsOpen.length = 2) {
+    console.log('2 cards open');
+  }
 }
