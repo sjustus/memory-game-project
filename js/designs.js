@@ -59,23 +59,41 @@ function gameOn() {
 
 // Function to display card symbol
 function displayCard(event) {
-  event.target.classList.add('show');
+  event.target.classList.add('open', 'show');
 }
 
 //Function to add clicked card to openCards array
 function openCards() {
-  cardsOpen.push(event);
+  if (cardsOpen.length < 2) {
+    cardsOpen.push(event);
+  }
   if (cardsOpen.length === 2) {
     disabled();
-  } else if (cardsOpen.length === 2 && cardsOpen[0].target.title === cardsOpen[1].target.title) {
-    console.log('match');
-  } else if (cardsOpen.length === 2 && cardsOpen[0].target.title != cardsOpen[1].target.title) {
-    console.log('mismatch');
+    if (cardsOpen[0].target.title === cardsOpen[1].target.title) {
+      match();
+  } else if (cardsOpen[0].target.title != cardsOpen[1].target.title) {
+      mismatch();
+    }
   }
-
 }
 
 // Function to disable mouse events
 function disabled() {
   deck.classList.add('disabled');
+}
+
+// Function to lock cards on match
+function match() {
+  cardsOpen[0].target.classList.add('match');
+  cardsOpen[1].target.classList.add('match');
+}
+
+// Function for cards mistmatch
+function mismatch() {
+  cardsOpen[0].target.classList.add('mismatch');
+  cardsOpen[1].target.classList.add('mismatch');
+  setTimeout() (function hideCards() {
+    cardsOpen[0].target.classList.remove('open', 'show', 'mismatch');
+    cardsOpen[1].target.classList.remove('open', 'show', 'mismatch');
+  }, 2000);
 }
