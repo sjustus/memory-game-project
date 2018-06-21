@@ -7,6 +7,9 @@ const deck = document.getElementById('deck');
 // Create list of open cards
 let cardsOpen = [];
 
+//Create list to hold matches cards
+let matchedCards = [];
+
 // Call gameOn function on load
 window.addEventListener('load', gameOn());
 
@@ -25,8 +28,8 @@ window.addEventListener('load', gameOn());
 for (let i = 0; i < cards.length; i++){
   cards[i].addEventListener('click', function(event) {
     displayCard(event); // Display card on click
-    openCards(); // Add clicked card to list of open cards
-
+    openCards(event); // Add clicked card to list of open cards
+    movesCounter();
   });
 };
 
@@ -63,7 +66,7 @@ function displayCard(event) {
 }
 
 //Function to add clicked card to openCards array
-function openCards() {
+function openCards(event) {
   if (cardsOpen.length < 2) {
     cardsOpen.push(event);
   }
@@ -86,14 +89,18 @@ function disabled() {
 function match() {
   cardsOpen[0].target.classList.add('match');
   cardsOpen[1].target.classList.add('match');
+  //remove from cardsOpen
+  cardsOpen.splice(0,2);
 }
 
 // Function for cards mistmatch
 function mismatch() {
   cardsOpen[0].target.classList.add('mismatch');
   cardsOpen[1].target.classList.add('mismatch');
-  setTimeout() (function hideCards() {
+  // Hide cards after one second
+  setTimeout(function hideCards() {
     cardsOpen[0].target.classList.remove('open', 'show', 'mismatch');
     cardsOpen[1].target.classList.remove('open', 'show', 'mismatch');
-  }, 2000);
+  }, 1000);
+  cardsOpen.splice(0,2);
 }
