@@ -111,6 +111,7 @@ body {
 .match {
     font-size: 33px;
     background-color: #ffed00;
+    color: #f7f7f7;
     pointer-events: none;
 }
 

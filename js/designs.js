@@ -1,14 +1,15 @@
-// Create a list that holds all of your cards
+// Array to hold all cards in deck
 const cards = [...document.querySelectorAll('.card')];
 
 // Select deck
 const deck = document.getElementById('deck');
 
-// Create list of open cards
+// List of open cards
 let cardsOpen = [];
 
-//Create list to hold matches cards
-let matchedCards = [];
+// Select moves counter
+let counter = document.getElementById('moves');
+let moves = 0;
 
 // Call gameOn function on load
 window.addEventListener('load', gameOn());
@@ -29,7 +30,8 @@ for (let i = 0; i < cards.length; i++){
   cards[i].addEventListener('click', function(event) {
     displayCard(event); // Display card on click
     openCards(event); // Add clicked card to list of open cards
-    movesCounter();
+
+
   });
 };
 
@@ -52,6 +54,7 @@ function shuffle(array) {
 
 // Function to shuffle cards and display on screen
 function gameOn() {
+  moves = 0;
   //Call shuffle() function on cards array to shuffle cards
   const isShuffled = shuffle(cards);
   //Add each item in new array to deck
@@ -67,11 +70,15 @@ function displayCard(event) {
 
 //Function to add clicked card to openCards array
 function openCards(event) {
+  // Push open cards to cardsOpen array
   if (cardsOpen.length < 2) {
     cardsOpen.push(event);
   }
+  // Disable click once 2 cards selected
   if (cardsOpen.length === 2) {
+    countMoves();
     disabled();
+    // Check match
     if (cardsOpen[0].target.title === cardsOpen[1].target.title) {
       match();
   } else if (cardsOpen[0].target.title != cardsOpen[1].target.title) {
@@ -85,12 +92,21 @@ function disabled() {
   deck.classList.add('disabled');
 }
 
+// Function to enable mouse events
+function enable() {
+  deck.classList.remove('disabled');
+  deck.classList.add('enable');
+}
+
 // Function to lock cards on match
 function match() {
   cardsOpen[0].target.classList.add('match');
   cardsOpen[1].target.classList.add('match');
+  cardsOpen[0].target.classList.remove('open', 'show',);
+  cardsOpen[1].target.classList.remove('open', 'show');
   //remove from cardsOpen
   cardsOpen.splice(0,2);
+  enable();
 }
 
 // Function for cards mistmatch
@@ -101,6 +117,14 @@ function mismatch() {
   setTimeout(function hideCards() {
     cardsOpen[0].target.classList.remove('open', 'show', 'mismatch');
     cardsOpen[1].target.classList.remove('open', 'show', 'mismatch');
+    cardsOpen.splice(0,2);
+    enable();
   }, 1000);
-  cardsOpen.splice(0,2);
+}
+
+
+// Count moves and add to html
+function countMoves () {
+  moves++;
+  counter.innerHTML = moves;
 }
