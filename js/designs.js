@@ -7,12 +7,36 @@ const deck = document.getElementById('deck');
 // List of open cards
 let cardsOpen = [];
 
+let matched = document.getElementsByClassName('match');
+
 // Select moves counter
-let counter = document.getElementById('moves');
+const counter = document.getElementById('moves');
 let moves = 0;
+
+// Select star icons
+const stars = [...document.querySelectorAll('.fas.fa-star')];
+
+// Select Modal
+const scoreModal = document.getElementById('winner');
+
+// Select modal close button
+const close = document.querySelector('.close');
 
 // Call gameOn function on load
 window.addEventListener('load', gameOn());
+
+
+// Click on close button to dismiss modal
+close.onclick = function() {
+    scoreModal.style.display = "none";
+}
+
+// Click outside of modal closes it
+window.onclick = function(event) {
+    if (event.target == scoreModal) {
+        scoreModal.style.display = "none";
+    }
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -30,14 +54,18 @@ for (let i = 0; i < cards.length; i++){
   cards[i].addEventListener('click', function(event) {
     displayCard(event); // Display card on click
     openCards(event); // Add clicked card to list of open cards
-
-
-  });
+    if (matched.length === 16) {
+      console.log('winner');
+      getScore();
+    }
+    event.preventDefault();
+  }, false);
 };
 
 
-//TODO: note where I got shuffle function
-// Shuffle function from http://stackoverflow.com/a/2450976
+
+// Fisher-Yates shuffle function from http://stackoverflow.com/a/2450976
+// Provided by Udacity via starter code for project
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -70,7 +98,6 @@ function displayCard(event) {
 
 //Function to add clicked card to openCards array
 function openCards(event) {
-  // Push open cards to cardsOpen array
   if (cardsOpen.length < 2) {
     cardsOpen.push(event);
   }
@@ -79,9 +106,9 @@ function openCards(event) {
     countMoves();
     disabled();
     // Check match
-    if (cardsOpen[0].target.title === cardsOpen[1].target.title) {
+    if (cardsOpen[0].target.type === cardsOpen[1].target.type) {
       match();
-  } else if (cardsOpen[0].target.title != cardsOpen[1].target.title) {
+  } else if (cardsOpen[0].target.type != cardsOpen[1].target.type) {
       mismatch();
     }
   }
@@ -109,7 +136,7 @@ function match() {
   enable();
 }
 
-// Function for cards mistmatch
+// Function for cards mismatch
 function mismatch() {
   cardsOpen[0].target.classList.add('mismatch');
   cardsOpen[1].target.classList.add('mismatch');
@@ -127,4 +154,25 @@ function mismatch() {
 function countMoves () {
   moves++;
   counter.innerHTML = moves;
+  setStars();
+}
+
+// Set star rating
+function setStars() {
+  if (moves > 12 && moves < 16) {
+    stars[2].classList.remove('fas');
+    stars[2].classList.add('far');
+  } else if (moves >
+    15) {
+    stars[1].classList.remove('fas');
+    stars[1].classList.add('far');
+  }
+}
+
+// Modal functionality
+
+// Function to display modal
+function getScore() {
+  scoreModal.style.display = 'block';
+
 }
