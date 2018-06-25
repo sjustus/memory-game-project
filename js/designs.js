@@ -20,6 +20,7 @@ let moves = 0;
 let sec = 0, min = 0;
 const mins = document.querySelector('.mins');
 const secs = document.querySelector('.secs');
+var interval;
 
 // Select star icons
 const stars = [...document.querySelectorAll('.fas.fa-star')];
@@ -86,6 +87,9 @@ function shuffle(array) {
 
 // Function to shuffle cards and display on screen
 function gameOn() {
+  // Stop timer
+  stopTimer();
+
   // Enable deck
   deck.classList.remove('disabled');
 
@@ -202,7 +206,7 @@ function getScore() {
 
 // Game timer
 function startTimer() {
-  setInterval (function () {
+  interval = setInterval (function () {
     secs.innerHTML = sec;
     mins.innerHTML = min;
     sec ++;
@@ -211,4 +215,8 @@ function startTimer() {
       sec = 0;
     }
   }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(interval);
 }
