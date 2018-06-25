@@ -59,10 +59,7 @@ for (let i = 0; i < cards.length; i++){
     startTimer(); // Start timer on click
     displayCard(event); // Display card on click
     openCards(event); // Add clicked card to list of open cards
-    if (matched.length === 16) {
-      console.log('winner');
-      getScore();
-    }
+    getScore();
     event.preventDefault();
   }, false);
 };
@@ -200,7 +197,10 @@ function setStars() {
 
 // Function to display modal
 function getScore() {
-  scoreModal.style.display = 'block';
+  if (matched.length === 16) {
+    clearInterval(interval);
+    scoreModal.style.display = 'block';
+  }
 
 }
 
@@ -215,6 +215,9 @@ function startTimer() {
       sec = 0;
     }
   }, 1000);
+  if (matched.length === 16) {
+    stopTimer();
+  }
 }
 
 function stopTimer() {
