@@ -16,6 +16,11 @@ const counter = document.getElementById('moves');
 //Store number of moves
 let moves = 0;
 
+// Timer
+let sec = 0, min = 0;
+const mins = document.querySelector('.mins');
+const secs = document.querySelector('.secs');
+
 // Select star icons
 const stars = [...document.querySelectorAll('.fas.fa-star')];
 
@@ -25,15 +30,21 @@ const scoreModal = document.getElementById('winner');
 // Select modal close button
 const close = document.querySelector('.close');
 
+// Select modal replay button
+const replay = document.querySelector('.replay');
+
 // Call gameOn function on load
 window.addEventListener('load', gameOn());
 
-
 // Click on close button to dismiss modal
 close.onclick = function() {
-    scoreModal.style.display = "none";
+    scoreModal.style.display = 'none';
 }
 
+// Click on replay dismisses modal
+replay.onclick = function() {
+  scoreModal.style.display = 'none';
+}
 // Click outside of modal to dismiss it
 window.onclick = function(event) {
     if (event.target == scoreModal) {
@@ -75,13 +86,32 @@ function shuffle(array) {
 
 // Function to shuffle cards and display on screen
 function gameOn() {
-  moves = 0;
-  //Call shuffle() function on cards array to shuffle cards
+  // Enable deck
+  deck.classList.remove('disabled');
+
+  // Shuffle cards, remove all classes, and add to deck
   const isShuffled = shuffle(cards);
-  //Add each item in new array to deck
+
   isShuffled.forEach(function(card) {
+    card.classList.remove('open', 'show', 'match', 'mismatch');
     deck.appendChild(card);
   });
+
+  // Reset moves
+  moves = 0;
+  counter.innerHTML = moves;
+
+  // Reset stars
+  stars.forEach(function(card) {
+    card.classList.remove('far');
+    card.classList.add('fas');
+  });
+
+  // Reset timer
+  sec = 0;
+  min = 0;
+  secs.innerHTML = sec;
+  mins.innerHTML = min;
 }
 
 // Function to display card symbol
@@ -171,10 +201,6 @@ function getScore() {
 }
 
 // Game timer
-let sec = 0, min = 0;
-const mins = document.querySelector('.mins');
-const secs = document.querySelector('.secs');
-
 function startTimer() {
   setInterval (function () {
     secs.innerHTML = sec;
