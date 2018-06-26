@@ -1,3 +1,4 @@
+/******** CARDS VARIABLES********/
 // Array to hold all cards in deck
 const cards = [...document.querySelectorAll('.card')];
 
@@ -10,6 +11,7 @@ let cardsOpen = [];
 //Select matched cards
 let matched = document.getElementsByClassName('match');
 
+/******** MOVES, STARS, & TIME VARIABLES********/
 // Select moves counter
 const counter = document.getElementById('moves');
 
@@ -20,20 +22,32 @@ let moves = 0;
 let sec = 0, min = 0;
 const mins = document.querySelector('.mins');
 const secs = document.querySelector('.secs');
-var interval;
+let interval;
 
 // Select star icons
 const stars = [...document.querySelectorAll('.fas.fa-star')];
 
+/******** SCORE MODAL VARIABLES********/
 // Select Modal
 const scoreModal = document.getElementById('winner');
 
 // Select modal close button
 const close = document.querySelector('.close');
 
+//Select span for final moves
+const modalMoves = document.getElementsByClassName('modalMoves');
+
+//Select span for final stars
+const modalStars = document.getElementsByClassName('modalStars');
+
+//Select span for final time
+const modalMins =  document.getElementsByClassName('modalMins');
+const modalSecs = document.getElementsByClassName('modalSecs');
+
 // Select modal replay button
 const replay = document.querySelector('.replay');
 
+/******** START EVENT LISTENERS ********/
 // Call gameOn function on load
 window.addEventListener('load', gameOn());
 
@@ -44,6 +58,7 @@ close.onclick = function() {
 
 // Click on replay dismisses modal
 replay.onclick = function() {
+  restart();
   scoreModal.style.display = 'none';
 }
 // Click outside of modal to dismiss it
@@ -53,10 +68,17 @@ window.onclick = function(event) {
     }
 }
 
+// Track if game has started or not
+let gamestart = false
+
 // Add event listener to each card in deck
 for (let i = 0; i < cards.length; i++){
   cards[i].addEventListener('click', function(event) {
-    startTimer(); // Start timer on click
+    // Start timer if game has started
+    if(!gamestart) {
+      gamestart = true;
+      startTimer();
+    }
     displayCard(event); // Display card on click
     openCards(event); // Add clicked card to list of open cards
     getScore();
@@ -97,10 +119,17 @@ function gameOn() {
     card.classList.remove('open', 'show', 'match', 'mismatch');
     deck.appendChild(card);
   });
+}
+
+// Restart gameOn
+function restart() {
+  gameOn();
 
   // Reset moves
   moves = 0;
   counter.innerHTML = moves;
+
+  gamestart = false
 
   // Reset stars
   stars.forEach(function(card) {
@@ -114,7 +143,6 @@ function gameOn() {
   secs.innerHTML = sec;
   mins.innerHTML = min;
 }
-
 // Function to display card symbol
 function displayCard(event) {
   event.target.classList.add('open', 'show');
@@ -198,15 +226,24 @@ function setStars() {
 // Function to display modal
 function getScore() {
   if (matched.length === 16) {
-    clearInterval(interval);
+    stopTimer();
+    setStats();
     scoreModal.style.display = 'block';
   }
 
 }
 
+// Get game stats and add to score modal
+function setStats() {
+  modalMoves.innerHTML = moves;
+  modalStars.innerHTML = stars.length;
+  modalMins.innerHTML = min;
+  modalSecs.innerHTML = sec;
+}
+
 // Game timer
 function startTimer() {
-  interval = setInterval (function () {
+  interval = setInterval(function () {
     secs.innerHTML = sec;
     mins.innerHTML = min;
     sec ++;
@@ -215,9 +252,6 @@ function startTimer() {
       sec = 0;
     }
   }, 1000);
-  if (matched.length === 16) {
-    stopTimer();
-  }
 }
 
 function stopTimer() {

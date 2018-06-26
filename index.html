@@ -33,7 +33,7 @@
         <span class="mins">0</span> Mins <span class="secs">0</span> Secs
       </div>
 
-      <div class="restart" onclick="gameOn()">
+      <div class="restart" onclick="restart()">
         <i class="fas fa-redo-alt"></i>
       </div>
     </section>
@@ -96,10 +96,10 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <h2>Congratulations!</h2>
-    <p>You won the game in 0 moves and 1 star.</p>
-    <p>Your final time was: </p>
-    <button class="replay" onclick="gameOn() closeModal()">Replay</button>
+    <h2 class="modal-heading">Congratulations!</h2>
+    <p class="modal-text">You won the game in <span class="modalMoves">0</span> moves and <span class="modalStars">1</span> star.</p>
+    <p class="modal-text">Your final time was: <span class="modalMins">0</span> Mins <span class="modalSecs">0</span> Secs</p>
+    <button class="button replay">Replay</button>
   </div>
 
 </div>
