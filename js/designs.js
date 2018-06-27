@@ -47,6 +47,8 @@ const modalSecs = document.getElementById('modalSecs');
 // Select modal replay button
 const replay = document.querySelector('.replay');
 
+let gamestart = false;
+
 /******** START EVENT LISTENERS ********/
 // Call gameOn function on load
 window.addEventListener('load', gameOn());
@@ -54,7 +56,7 @@ window.addEventListener('load', gameOn());
 // Click on close button to dismiss modal
 close.onclick = function() {
     scoreModal.style.display = 'none';
-}
+};
 
 // Click on replay dismisses modal
 replay.onclick = function() {
@@ -67,9 +69,6 @@ window.onclick = function(event) {
         scoreModal.style.display = "none";
     }
 };
-
-// Track if game has started or not
-let gamestart = false;
 
 // Add event listener to each card in deck
 for (let i = 0; i < cards.length; i++){
@@ -87,7 +86,7 @@ for (let i = 0; i < cards.length; i++){
 };
 
 
-
+/********START FUNCTIONS********/
 // Fisher-Yates shuffle function from http://stackoverflow.com/a/2450976
 // Provided by Udacity via project starter code
 function shuffle(array) {
@@ -108,13 +107,10 @@ function shuffle(array) {
 function gameOn() {
   // Stop timer
   stopTimer();
-
   // Enable deck
   deck.classList.remove('disabled');
-
   // Shuffle cards, remove all classes, and add to deck
   const isShuffled = shuffle(cards);
-
   isShuffled.forEach(function(card) {
     card.classList.remove('open', 'show', 'match', 'mismatch');
     deck.appendChild(card);
@@ -124,25 +120,22 @@ function gameOn() {
 // Restart gameOn
 function restart() {
   gameOn();
-
   // Reset moves
   moves = 0;
   counter.innerHTML = moves;
-
   gamestart = false
-
   // Reset stars
   stars.forEach(function(card) {
     card.classList.remove('far');
     card.classList.add('fas');
   });
-
   // Reset timer
   sec = 0;
   min = 0;
   secs.innerHTML = sec;
   mins.innerHTML = min;
 }
+
 // Function to display card symbol
 function displayCard(event) {
   event.target.classList.add('open', 'show');
@@ -221,7 +214,7 @@ function setStars() {
   };
 }
 
-// Modal functionality
+/*******MODAL FUNCTIONALITY********/
 
 // Function to display modal
 function getScore() {

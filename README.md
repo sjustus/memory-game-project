@@ -1,5 +1,5 @@
 ##Introduction
-The Memory Game is required project for Udacity's Front-End Development Nanodegree.
+The Memory Game is a required project for Udacity's Front-End Development Nanodegree.
 
 Though starter code was provided, I tried as much as possible to build completely from scratch using the starter code only as a guide.
 
