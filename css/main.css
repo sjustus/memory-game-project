@@ -59,6 +59,7 @@ img, embed, object, video {
   width: 660px;
   margin-bottom: 0;
   font-size: 1.8em;
+  max-width: 100%;
 }
 
 .score-panel .movesCounter {
@@ -90,7 +91,7 @@ img, embed, object, video {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  width: 660px;
+  max-width: 660px;
   min-height: 680px;
   list-style: none;
   border-radius: 10px;
@@ -303,4 +304,35 @@ close:hover,
   }
   }
 
-  
+  /********RESPONSIVE********/
+  /* Small Screens */
+  @media screen and (min-width: 360px) and (max-width: 475px){
+    span {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.2em;
+    }
+    .container h1 {
+      font-size: 3.6em;
+    }
+    .card {
+      margin:10px;
+      width: 75px;
+      height:75px;
+    }
+  }
+
+  /* Medium Screen*/
+  @media screen and (min-width: 476px) and (max-width: 630px){
+    span {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.2em;
+    }
+    .container h1 {
+      font-size: 4.2em;
+    }
+    .card {
+      margin:10px;
+      width: 100px;
+      height:100px;
+    }
+  }

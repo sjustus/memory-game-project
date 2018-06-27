@@ -1,1 +1,32 @@
+/********RESPONSIVE********/
+/* Small Screens */
+@media screen and (min-width: 320px) and (max-width: 475px){
+  span {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+  }
+  .container h1 {
+    font-size: 3.6em;
+  }
+  .card {
+    margin:10px;
+    width: 75px;
+    height:75px;
+  }
+}
 
+/* Medium Screen*/
+@media screen and (min-width: 476px) and (max-width: 630px){
+  span {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+  }
+  .container h1 {
+    font-size: 4.2em;
+  }
+  .card {
+    margin:10px;
+    width: 100px;
+    height:100px;
+  }
+}
