@@ -35,14 +35,14 @@ const scoreModal = document.getElementById('winner');
 const close = document.querySelector('.close');
 
 //Select span for final moves
-const modalMoves = document.getElementsByClassName('modalMoves');
+const modalMoves = document.getElementById('modalMoves');
 
 //Select span for final stars
-const modalStars = document.getElementsByClassName('modalStars');
+const modalStars = document.getElementById('modalStars');
 
 //Select span for final time
-const modalMins =  document.getElementsByClassName('modalMins');
-const modalSecs = document.getElementsByClassName('modalSecs');
+const modalMins =  document.getElementById('modalMins');
+const modalSecs = document.getElementById('modalSecs');
 
 // Select modal replay button
 const replay = document.querySelector('.replay');
@@ -228,7 +228,9 @@ function getScore() {
   if (matched.length === 16) {
     stopTimer();
     setStats();
-    scoreModal.style.display = 'block';
+    setTimeout(function() {
+      scoreModal.style.display = 'block';
+    }, 1000);
   }
 
 }
