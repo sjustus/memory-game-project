@@ -19,7 +19,7 @@ body {
 body {
   font-size: 10px;
   font-family: 'Open Sans', sans-serif;
-  background: url('../img/sun-pattern.png'); /* Backgroud from Subtle Patterns */
+  background: url('../img/sun-pattern.png'); /* Backgroud from Subtle Patterns https://www.toptal.com/designers/subtlepatterns/*/
 }
 
 h1 {
@@ -226,7 +226,7 @@ close:hover,
 }
 
 /* Animations*/
-
+/* Animations generator -- http://www.theappguruz.com/tag-tools/web/CSSAnimations/*/
 /* Pulse */
 @-webkit-keyframes pulse {
  0% {
@@ -304,5 +304,3 @@ close:hover,
   transform: rotate3d(0, 0, 1, 0deg);
   }
   }
-
-  
