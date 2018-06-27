@@ -60,16 +60,16 @@ close.onclick = function() {
 replay.onclick = function() {
   restart();
   scoreModal.style.display = 'none';
-}
+};
 // Click outside of modal to dismiss it
 window.onclick = function(event) {
     if (event.target == scoreModal) {
         scoreModal.style.display = "none";
     }
-}
+};
 
 // Track if game has started or not
-let gamestart = false
+let gamestart = false;
 
 // Add event listener to each card in deck
 for (let i = 0; i < cards.length; i++){
@@ -218,7 +218,7 @@ function setStars() {
     15) {
     stars[1].classList.remove('fas');
     stars[1].classList.add('far');
-  }
+  };
 }
 
 // Modal functionality

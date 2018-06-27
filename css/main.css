@@ -22,10 +22,24 @@ body {
   background: url('../img/sun-pattern.png'); /* Backgroud from Subtle Patterns */
 }
 
- h1 {
+h1 {
   font-family: 'Bevan', serif;
   font-size: 5.6em;
   margin-bottom: 0;
+ }
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.4em;
+}
+
+span {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.4em;
+}
+
+img, embed, object, video {
+  max-width: 100%;
  }
 
 .container {
@@ -95,6 +109,7 @@ body {
   border-radius: 8px;
   font-size: 0px;
   background-color: #87cefa;
+  cursor: pointer;
 }
 
 
@@ -104,16 +119,18 @@ body {
 
 .show {
     font-size: 33px;
-    background-color: #606470;
+    background-color: #7f7f7f;
     color: #f7f7f7;
     pointer-events: none;
+    cursor: default;
 }
 
 .match {
-    font-size: 33px;
+    font-size: 36px;
     background-color: #ffed00;
-    color: #f7f7f7;
+    color: #474747;
     pointer-events: none;
+    cursor: default;
     -webkit-animation-name: pulse;
     animation-name: pulse;
     -webkit-animation-duration: 2s;
@@ -158,6 +175,10 @@ body {
 
 /* Modal Content/Box */
 .modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #f7f7f7;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -169,14 +190,14 @@ body {
 /* The Close Button */
 .close {
   color: #aaa;
-  float: right;
+  align-self: flex-end;
   font-size: 28px;
   font-weight: bold;
 }
 
 close:hover,
 .close:focus {
-  color: black;
+  color: #000;
   text-decoration: none;
     cursor: pointer;
 }
@@ -184,19 +205,23 @@ close:hover,
 .modal-heading {
   font-size: 32px;
   font-family: 'Bevan', serif;
-  text-align: center;
+  margin: 10px auto;
 }
 
 .modal-text {
   font-size: 1.8em;
   font-family: 'Open Sans', sans-serif;
-  text-align: center;
+  margin: 10px auto;
 }
 
 .button {
-  margin: auto;
-  text-align: center;
-
+  margin-top: 20px;
+  padding: 15px 20px;
+  border-radius: 5px;
+  background-color: #ffed00;
+  font-size: 2em;
+  font-weight: bold;
+  font-family: 'Open Sans', sans-serif;
 }
 /* Animations*/
 
@@ -277,3 +302,5 @@ close:hover,
   transform: rotate3d(0, 0, 1, 0deg);
   }
   }
+
+  
