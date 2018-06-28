@@ -120,6 +120,8 @@ function gameOn() {
 // Restart gameOn
 function restart() {
   gameOn();
+  // Empty cards array
+  cardsOpen = [];
   // Reset moves
   moves = 0;
   counter.innerHTML = moves;
@@ -231,9 +233,15 @@ function getScore() {
 // Get game stats and add to score modal
 function setStats() {
   modalMoves.innerHTML = moves;
-  modalStars.innerHTML = stars.length;
   modalMins.innerHTML = min;
   modalSecs.innerHTML = sec;
+  if (moves > 12 && moves < 16) {
+    modalStars.innerHTML = 2 + ' stars';
+  } else if (moves >
+    15) {
+    modalStars.innerHTML = 1 + ' star';
+  } else
+    modalStars.innerHTML = 3 + ' star';
 }
 
 // Game timer
